@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    <!-- send Data to RegistServlet
+         내용이 많아지면, get(url 전달방식) 방식으로 전송하는대 무리가 있다.
+         post 방식 이용 : request body 안에 data를 실어 보냄 (개발자 도구 확인) -->
+    <form action="RegistServlet" method="post">
+        <div>
+            <label> 제목 :</label>
+            <input type="text" name="title">
+        </div>
+        <div>
+            <label> 내용 :</label>
+            <textarea type="text" name ="content"></textarea>
+        </div>
+        <div>
+            <input type="submit" value=" title, content 등록">
+        </div>
+    </form>
+</div>
+
+</body>
+</html>
