@@ -27,6 +27,32 @@ public class ServletAnnotation extends HttpServlet {
             writer.println(i + " 안녕 servlet<br>" );
         }
 
+        //GET 요청과 Query String
+        /*
+        기본적으로 사용자의 요청은 문서를 달라는 식의 요청 (GET 방식의 경우)
+        http://localhost/hello
+        그 요청에 다음과 같이 쿼리 스트링을 붙여서 요청할 수 있다.
+        http://localhost/hello?repeatCnt=3
+
+        http://localhost/hello?repeatCnt=3     -> "3"
+        http://localhost/hello?repeatCnt=      -> ""
+        http://localhost/hello?                -> null
+        http://localhost/hello                 -> null
+
+         */
+        int repeatCnt = 1;
+        String strCnt = request.getParameter("repeatCnt");
+
+        if(strCnt!=null && !strCnt.equals(""))
+        {
+            repeatCnt = Integer.parseInt(strCnt);
+        }
+
+        for(int i=0;i<repeatCnt;i++)
+        {
+            writer.println(i + "query string servlet<br>" );
+        }
+
 
     }
 }
