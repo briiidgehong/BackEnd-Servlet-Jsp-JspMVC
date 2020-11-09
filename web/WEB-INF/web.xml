@@ -4,14 +4,30 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0"
          metadata-complete="false" >
-
+         <!--metadata-complete가 "true"로 설정된 경우 배치 도구는 애플리케이션의 클래스 파일에있을 수있는 배치 정보를 지정하는 어노테이션을 무시해야합니다.
+             metadata-complete가 지정되지 않았거나 "false"로 설정된 경우 배포 도구는 사양에 지정된대로 응용 프로그램의 클래스 파일에서 annotaion 을 검사해야합니다.
+         -->
+<!--
     <servlet>
         <servlet-name>myapp</servlet-name>
         <servlet-class>mangozzelli.FirstServlet</servlet-class>
     </servlet>
-
     <servlet-mapping>
         <servlet-name>myapp</servlet-name>
         <url-pattern>/FirstServlet</url-pattern>
     </servlet-mapping>
+-->
+
+<!--
+    <filter>
+        <filter-name>EncodingFilter</filter-name>
+        <filter-class>mangozzelli.filter.EncodingFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>EncodingFilter</filter-name>
+
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+-->
+
 </web-app>
