@@ -20,6 +20,12 @@ public class EncodingFilter implements Filter {
     public void doFilter(ServletRequest servletRequest,
                          ServletResponse servletResponse,
                          FilterChain filterChain) throws IOException, ServletException {
+
+        //우리는 리스폰스 텍스트의 인코딩 형식을 UTF-8 로 사용할꺼야
+        servletResponse.setCharacterEncoding("UTF-8");
+        //브라우저에게 명시 : 우리가 보내는 텍스트는 html 이고, 인코딩 형식은 UTF-8이야
+        servletResponse.setContentType("text/html; charset=UTF-8");
+
         //해당 filter 를 거치는 모든 문서에 대해 encoding 적용
         servletRequest.setCharacterEncoding("UTF-8");
         System.out.println("before filter");
