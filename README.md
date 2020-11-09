@@ -6,7 +6,7 @@ BackEnd 개발의 큰 흐름 : Servlet -> JSP -> JSP MVC -> SPRING -> SPRING BOO
 
 각각의 구현과 함께 바뀌어가는 과정을 한 cycle 정리할 예정
 
-Servlet 편의 개발환경은 다음과 같습니다.
+Servlet 편의 개발환경은 다음과 같습니다. 
 * IDE : IntelliJ IDEA
 * Git Tools : GitHub Desktop
 * OS : Window 10
