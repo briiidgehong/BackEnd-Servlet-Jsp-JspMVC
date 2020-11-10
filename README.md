@@ -1,4 +1,4 @@
-# BackEnd 개발정리 편 - Servlet
+# BackEnd 개발정리 편 - Servlet -> 완료
 
 BackEnd 개발의 큰 흐름 : Servlet -> JSP -> JSP MVC -> SPRING -> SPRING BOOT
 
@@ -13,6 +13,10 @@ Servlet 편의 개발환경은 다음과 같습니다.
 * Java Enterprise Edition 
 * Java 11 JDK
 * Tomcat 9
+
+Servlet편 첫 커밋(https://github.com/mangozzelli/BackEnd-Servlet-Jsp-JspMVC/commit/395ee66c67da8d19a6686327342afdd44fec2893)
+Servlet편 마지막 커밋(https://github.com/mangozzelli/BackEnd-Servlet-Jsp-JspMVC/commit/2155e707fbe631ddb729f3f4725fb0e5aff9ae79)
+
 
 ## 이후 업로드 예정 (빠른시간안에 !)
 ### BackEnd 개발정리 편 - JSP
