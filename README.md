@@ -18,9 +18,7 @@ Servlet 편의 개발환경은 다음과 같습니다.
 ➡📝⛏📝⛏📝⛏➡  
 [servlet last commit](https://github.com/mangozzelli/BackEnd-Servlet-Jsp-JspMVC/commit/2155e707fbe631ddb729f3f4725fb0e5aff9ae79)
 
-
+### BackEnd 개발정리 편 - JSP - JSP MVC
 ## 이후 업로드 예정 (빠른시간안에 !)
-### BackEnd 개발정리 편 - JSP
-### BackEnd 개발정리 편 - JSP MVC
 ### BackEnd 개발정리 편 - SPRING
 ### BackEnd 개발정리 편 - SPRING BOOT
