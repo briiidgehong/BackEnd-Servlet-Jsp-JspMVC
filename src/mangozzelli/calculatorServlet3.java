@@ -1,10 +1,14 @@
 package mangozzelli;
 
+import jdk.swing.interop.SwingInterOpUtils;
+
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
@@ -15,9 +19,39 @@ import java.io.PrintWriter;
 
 @WebServlet("/calculateServlet3")
 public class calculatorServlet3 extends HttpServlet {
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        System.out.println("get method control using doGet function");
+    }
 
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        System.out.println("get method control using doPost function");
+    }
+
+    /* 서비스 함수의 오버라이드 원형 -> doGet / doPost 를 호출하는 super.service 코드를 가지고 있다.
+    @Override
+    public void service(ServletRequest req, ServletResponse res) throws ServletException, IOException {
+        super.service(req, res);
+    }
+    */
     public void service(HttpServletRequest request,
                         HttpServletResponse response) throws IOException, ServletException {
+
+        // <form action="calculateServlet3" method="get or post">
+        // 위와 같이 method 로 get 과 post 가 올때 각각 처리하는 방법에는 두가지가 존재
+        // 1. 아래와 같이 service 함수 내에서 getMethod 로 구분하여 코드 작성
+        if(request.getMethod().equals("GET"))
+            System.out.println("get method control using service function");
+        if(request.getMethod().equals("POST"))
+            System.out.println("post method using service function");
+
+
+        // 2. httpServlet 객체의 doGet , doPost 함수 오버라이딩 하여 사용
+        // doGet, doPost -> 겟, 포스트 방식으로 데이터가 넘어오면 다음과 같은 코드를 실행해라.
+        // 오버라이딩 한후, super.service(request, response);
+        // get / post 에 따라 -> doGet / doPost 메소드 실행
+        super.service(request, response);
 
         // 사용자가 입력한 값을 받고
         String number = request.getParameter("number");
