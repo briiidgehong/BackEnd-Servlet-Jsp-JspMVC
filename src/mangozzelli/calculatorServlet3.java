@@ -47,7 +47,7 @@ public class calculatorServlet3 extends HttpServlet {
             } catch (ScriptException e) {
                 e.printStackTrace();
             }
-        }else if(operator.equals("C")){
+        }else if(operator != null && operator.equals("C")){
             outputStr = "";
 
         }else { // number / operator / dot 중 하나의 값만 들어온다.
@@ -60,7 +60,7 @@ public class calculatorServlet3 extends HttpServlet {
         // 쿠키에 저장을 하고
         Cookie outputCookie = new Cookie("output", outputStr);
 
-        if(operator.equals("C")) // c인 경우 cookie 를 아예 지운다.
+        if(operator != null && operator.equals("C")) // c인 경우 cookie 를 아예 지운다.
             outputCookie.setMaxAge(0);
 
         response.addCookie(outputCookie);
