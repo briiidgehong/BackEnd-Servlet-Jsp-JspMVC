@@ -7,6 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 @WebServlet("/model2Servlet")
 public class model2Servlet extends HttpServlet {
@@ -35,10 +38,24 @@ public class model2Servlet extends HttpServlet {
         // 서블릿간(servlet - servlet(=jsp 또한 포함)) 데이터 공유는 requst 객체를 사용한다.
         request.setAttribute("model",model);
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("spagettiJSP.jsp");
+
+        // list, map 의 전달
+        String[] list = {"kkiri", "desic"};
+        request.setAttribute("list", list);
+
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("id", 1);
+        map.put("title", "good");
+        request.setAttribute("map", map);
+
+
         // 여기 서블릿에서 쓰고있는 request 와 response 객체를 그대로 jsp 페이지로 보낸다.
         // 여기 서블릿의 requst, response 객체와 jsp page의 request response 가 같아져서 데이터를 공유하는 효과
         requestDispatcher.forward(request,response);
 
         // 이렇게 이어가는 것이 아니라 새로 요청 할때는 redirect 쓰면 된다.
+
+
+
     }
 }
