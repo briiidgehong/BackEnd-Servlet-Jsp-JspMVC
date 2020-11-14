@@ -81,7 +81,7 @@ public class NoticeDetailController extends HttpServlet {
         // detail.jsp 페이지로 흐름(데이터)을 흘려줘야 한다.
         // servlet 에서 servlet 으로 전이하는 방법은 두가지
         // 1. redirect  2. forward
-        request.getRequestDispatcher("/notice/detail.jsp")
+        request.getRequestDispatcher("/WEB-INF/view/notice/detail.jsp")
                 .forward(request,response);
 
     }
