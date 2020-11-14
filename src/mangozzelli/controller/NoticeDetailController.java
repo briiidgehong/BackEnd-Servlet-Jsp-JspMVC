@@ -1,5 +1,7 @@
 package mangozzelli.controller;
 
+import mangozzelli.entity.Notice;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -36,6 +38,8 @@ public class NoticeDetailController extends HttpServlet {
 
 
             //MODEL VARIABLE
+            // 이 데이터들을 "공지사항" 이라는 엔티티 로 묶을수 있다.
+            // 엔티티 = 개체 = 개념화된 데이터 = 구조적인 데이터
             String title = rs.getString("TITLE");
             String content = rs.getString("CONTENT");
             Date regdate = rs.getDate("REGDATE");
@@ -43,19 +47,32 @@ public class NoticeDetailController extends HttpServlet {
             String hit = rs.getString("HIT");
             String files = rs.getString("FILES");
 
+            Notice notice = new Notice(
+                    id,
+                    title,
+                    content,
+                    regdate,
+                    writer_id,
+                    hit,
+                    files
+            );
 
 
             rs.close();
             st.close();
             con.close();
 
+
+            /*
             request.setAttribute("title", title);
             request.setAttribute("content", content);
             request.setAttribute("regdate", regdate);
             request.setAttribute("writer_id", writer_id);
             request.setAttribute("hit", hit);
             request.setAttribute("files", files);
+            */
 
+            request.setAttribute("notice", notice);
 
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
