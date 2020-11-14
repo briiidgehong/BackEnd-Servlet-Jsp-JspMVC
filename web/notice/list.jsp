@@ -1,23 +1,8 @@
-<%@ page import="java.sql.Connection" %>
-<%@ page import="java.sql.DriverManager" %>
-<%@ page import="java.sql.Statement" %>
-<%@ page import="java.sql.ResultSet" %>
+<%@ page import="mangozzelli.entity.Notice" %>
+<%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 
-<%
-	String url = "jdbc:oracle:thin:@localhost:1521/xe";
-	String sql = "SELECT * FROM NOTICE";
 
-	try {
-		Class.forName("oracle.jdbc.driver.OracleDriver");
-	} catch (ClassNotFoundException e) {
-		System.out.println("ODBC CLASS LOAD 실패");
-		e.printStackTrace();
-	}
-		Connection con = DriverManager.getConnection(url, "C##MANGOZZELLI", "0000");
-		Statement st = con.createStatement();
-		ResultSet rs = st.executeQuery(sql);
-%>
 <!DOCTYPE html>
 <html>
 
@@ -195,15 +180,19 @@
 					     10번 반복 for문 생성, 안에 출력되는 <tr> <td> 들은
 					     out.print("<tr> <td>") 이런식으로 Jasper 가 바꿔줄꺼다. -->
 
-					<% while (rs.next()){ %>
+					<%
+						List<Notice> list = (List<Notice>) request.getAttribute("list");
+						for(Notice n :list) {
+							//page, request, session, application 저장소 중 page 사용
+							pageContext.setAttribute("n",n);
+					%>
+
 					<tr>
-						<td><%=rs.getInt("ID")%></td>
-						<td class="title indent text-align-left"><a href="/notice/detail?id=<%=rs.getInt("ID")%>"><%=rs.getString("TITLE")%></a></td>
-						<td><%=rs.getString("WRITER_ID")%></td>
-						<td>
-							<%=rs.getString("REGDATE")%>
-						</td>
-						<td><%=rs.getString("HIT")%></td>
+						<td>${n.id}</td>
+						<td class="title indent text-align-left"><a href="/notice/detail?id=${n.id}">${n.title}</a></td>
+						<td>${n.writer_id}</td>
+						<td>${n.regdate}</td>
+						<td>${n.hit}</td>
 					</tr>
 					<%}%>
 
@@ -280,8 +269,3 @@
 
     </html>
 
-<%
-	rs.close();
-	st.close();
-	con.close();
-%>
