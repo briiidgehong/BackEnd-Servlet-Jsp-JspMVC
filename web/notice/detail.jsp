@@ -1,23 +1,31 @@
-<%@ page import="java.sql.Connection" %>
-<%@ page import="java.sql.DriverManager" %>
-<%@ page import="java.sql.Statement" %>
-<%@ page import="java.sql.ResultSet" %>
+<%@ page import="java.sql.*" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 
-<%
-	String url = "jdbc:oracle:thin:@localhost:1521/xe";
-	String sql = "SELECT * FROM NOTICE";
 
-	try {
-		Class.forName("oracle.jdbc.driver.OracleDriver");
-	} catch (ClassNotFoundException e) {
-		System.out.println("ODBC CLASS LOAD 실패");
-		e.printStackTrace();
-	}
-		Connection con = DriverManager.getConnection(url, "C##MANGOZZELLI", "0000");
-		Statement st = con.createStatement();
-		ResultSet rs = st.executeQuery(sql);
+<%
+
+    int id = Integer.parseInt(request.getParameter("id"));
+    String url = "jdbc:oracle:thin:@localhost:1521/xe";
+    String sql = "SELECT * FROM NOTICE WHERE ID=?";
+
+    try {
+        Class.forName("oracle.jdbc.driver.OracleDriver");
+    } catch (ClassNotFoundException e) {
+        System.out.println("ODBC CLASS LOAD 실패");
+        e.printStackTrace();
+    }
+    Connection con = DriverManager.getConnection(url, "C##MANGOZZELLI", "0000");
+    PreparedStatement st = con.prepareStatement(sql);
+
+    // 위의 ? 와 연계
+    st.setInt(1, id);
+
+    ResultSet rs = st.executeQuery();
+
+    //resultSet이 가지고 있는 공간에 record 하나가 적재된다.
+    rs.next();
 %>
+
 <!DOCTYPE html>
 <html>
 
@@ -25,15 +33,15 @@
     <title>코딩 전문가를 만들기 위한 온라인 강의 시스템</title>
     <meta charset="UTF-8">
     <title>공지사항목록</title>
-
+    
     <link href="/css/customer/layout.css" type="text/css" rel="stylesheet" />
     <style>
-
-        #visual .content-container{
+    
+        #visual .content-container{	
             height:inherit;
-            display:flex;
+            display:flex; 
             align-items: center;
-
+            
             background: url("../../images/customer/visual.png") no-repeat center;
         }
     </style>
@@ -42,8 +50,8 @@
 <body>
     <!-- header 부분 -->
 
-    <header id="header">
-
+	<header id="header">
+        
         <div class="content-container">
             <!-- ---------------------------<header>--------------------------------------- -->
 
@@ -102,12 +110,12 @@
             </section>
 
         </div>
-
+        
     </header>
 
 	<!-- --------------------------- <visual> --------------------------------------- -->
 	<!-- visual 부분 -->
-
+	
 	<div id="visual">
 		<div class="content-container"></div>
 	</div>
@@ -129,7 +137,7 @@
 						<li><a class=""  href="/customer/faq">자주하는 질문</a></li>
 						<li><a class="" href="/customer/question">수강문의</a></li>
 						<li><a class="" href="/customer/event">이벤트</a></li>
-
+						
 					</ul>
 				</nav>
 
@@ -139,106 +147,85 @@
 		<ul>
 			<li><a target="_blank" href="http://www.notepubs.com"><img src="/images/notepubs.png" alt="노트펍스" /></a></li>
 			<li><a target="_blank" href="http://www.namoolab.com"><img src="/images/namoolab.png" alt="나무랩연구소" /></a></li>
-
+						
 		</ul>
 	</nav>
-
+					
 			</aside>
 			<!-- --------------------------- main --------------------------------------- -->
 
+			
 
 
-		<main class="main">
-			<h2 class="main title">공지사항</h2>
-
-			<div class="breadcrumb">
-				<h3 class="hidden">경로</h3>
-				<ul>
-					<li>home</li>
-					<li>고객센터</li>
-					<li>공지사항</li>
-				</ul>
-			</div>
-
-			<div class="search-form margin-top first align-right">
-				<h3 class="hidden">공지사항 검색폼</h3>
-				<form class="table-form">
-					<fieldset>
-						<legend class="hidden">공지사항 검색 필드</legend>
-						<label class="hidden">검색분류</label>
-						<select name="f">
-							<option  value="title">제목</option>
-							<option  value="writerId">작성자</option>
-						</select>
-						<label class="hidden">검색어</label>
-						<input type="text" name="q" value=""/>
-						<input class="btn btn-search" type="submit" value="검색" />
-					</fieldset>
-				</form>
-			</div>
-
-			<div class="notice margin-top">
-				<h3 class="hidden">공지사항 목록</h3>
-				<table class="table">
-					<thead>
-						<tr>
-							<th class="w60">번호</th>
-							<th class="expand">제목</th>
-							<th class="w100">작성자</th>
-							<th class="w100">작성일</th>
-							<th class="w60">조회수</th>
-						</tr>
-					</thead>
-					<tbody>
-
-					<!-- DB에서 가져와서 출력하는 식으로 수정 예정
-					     10번 반복 for문 생성, 안에 출력되는 <tr> <td> 들은
-					     out.print("<tr> <td>") 이런식으로 Jasper 가 바꿔줄꺼다. -->
-
-					<% while (rs.next()){ %>
-					<tr>
-						<td><%=rs.getInt("ID")%>;%></td>
-						<td class="title indent text-align-left"><a href="detail.jsp?id=<%=rs.getInt("ID")%>"><%=rs.getString("TITLE")%></a></td>
-						<td><%=rs.getString("WRITER_ID")%></td>
-						<td>
-							<%=rs.getString("REGDATE")%>
-						</td>
-						<td><%=rs.getString("HIT")%></td>
-					</tr>
-					<%}%>
-
-					</tbody>
-				</table>
-			</div>
-
-			<div class="indexer margin-top align-right">
-				<h3 class="hidden">현재 페이지</h3>
-				<div><span class="text-orange text-strong">1</span> / 1 pages</div>
-			</div>
-
-			<div class="margin-top align-center pager">
-
-	<div>
-
-
-		<span class="btn btn-prev" onclick="alert('이전 페이지가 없습니다.');">이전</span>
-
-	</div>
-	<ul class="-list- center">
-		<li><a class="-text- orange bold" href="?p=1&t=&q=" >1</a></li>
-
-	</ul>
-	<div>
-
-
-			<span class="btn btn-next" onclick="alert('다음 페이지가 없습니다.');">다음</span>
-
-	</div>
-
-			</div>
-		</main>
-
-
+			<main>
+				<h2 class="main title">공지사항</h2>
+				
+				<div class="breadcrumb">
+					<h3 class="hidden">breadlet</h3>
+					<ul>
+						<li>home</li>
+						<li>고객센터</li>
+						<li>공지사항</li>
+					</ul>
+				</div>
+				
+				<div class="margin-top first">
+						<h3 class="hidden">공지사항 내용</h3>
+						<table class="table">
+							<tbody>
+								<tr>
+									<th>제목</th>
+									<td class="text-align-left text-indent text-strong text-orange" colspan="3"><%=rs.getString("TITLE")%></td>
+								</tr>
+								<tr>
+									<th>작성일</th>
+									<td class="text-align-left text-indent" colspan="3"><%=rs.getDate("REGDATE")%></td>
+								</tr>
+								<tr>
+									<th><%=rs.getString("WRITER_ID")%></th>
+									<td>newlec</td>
+									<th><%=rs.getString("HIT")%></th>
+									<td>148</td>
+								</tr>
+								<tr>
+									<th>첨부파일</th>
+									<td colspan="3"><%=rs.getString("FILES")%></td>
+								</tr>
+								<tr class="content">
+									<td colspan="4"><%=rs.getString("CONTENT")%></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					
+					<div class="margin-top text-align-center">
+						<a class="btn btn-list" href="list.jsp">목록</a>
+					</div>
+					
+					<div class="margin-top">
+						<table class="table border-top-default">
+							<tbody>
+								
+								<tr>
+									<th>다음글</th>
+									<td colspan="3"  class="text-align-left text-indent">다음글이 없습니다.</td>
+								</tr>
+								
+									
+								
+								
+								<tr>
+									<th>이전글</th>
+									<td colspan="3"  class="text-align-left text-indent"><a class="text-blue text-strong" href="">스프링 DI 예제 코드</a></td>
+								</tr>
+								
+								
+							</tbody>
+						</table>
+					</div>			
+					
+			</main>		
+			
 		</div>
 	</div>
 
@@ -249,7 +236,7 @@
         <footer id="footer">
             <div class="content-container">
                 <h2 id="footer-logo"><img src="/images/logo-footer.png" alt="회사정보"></h2>
-
+    
                 <div id="company-info">
                     <dl>
                         <dt>주소:</dt>
@@ -277,11 +264,11 @@
             </div>
         </footer>
     </body>
-
+    
     </html>
 
 <%
-	rs.close();
-	st.close();
-	con.close();
+    rs.close();
+    st.close();
+    con.close();
 %>
