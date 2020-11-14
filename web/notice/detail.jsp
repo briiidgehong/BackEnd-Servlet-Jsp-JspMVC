@@ -3,7 +3,7 @@
 
 
 <%
-
+    //CONTROLLER
     int id = Integer.parseInt(request.getParameter("id"));
     String url = "jdbc:oracle:thin:@localhost:1521/xe";
     String sql = "SELECT * FROM NOTICE WHERE ID=?";
@@ -24,6 +24,21 @@
 
     //resultSet이 가지고 있는 공간에 record 하나가 적재된다.
     rs.next();
+
+
+    //MODEL VARIABLE
+    String title = rs.getString("TITLE");
+    String content = rs.getString("CONTENT");
+    Date regdate = rs.getDate("REGDATE");
+    String writer_id = rs.getString("WRITER_ID");
+    String hit = rs.getString("HIT");
+    String files = rs.getString("FILES");
+
+
+
+    rs.close();
+    st.close();
+    con.close();
 %>
 
 <!DOCTYPE html>
@@ -175,24 +190,24 @@
 							<tbody>
 								<tr>
 									<th>제목</th>
-									<td class="text-align-left text-indent text-strong text-orange" colspan="3"><%=rs.getString("TITLE")%></td>
+									<td class="text-align-left text-indent text-strong text-orange" colspan="3"><%=title%></td>
 								</tr>
 								<tr>
 									<th>작성일</th>
-									<td class="text-align-left text-indent" colspan="3"><%=rs.getDate("REGDATE")%></td>
+									<td class="text-align-left text-indent" colspan="3"><%=regdate%></td>
 								</tr>
 								<tr>
-									<th><%=rs.getString("WRITER_ID")%></th>
+									<th><%=writer_id%></th>
 									<td>newlec</td>
-									<th><%=rs.getString("HIT")%></th>
+									<th><%=hit%></th>
 									<td>148</td>
 								</tr>
 								<tr>
 									<th>첨부파일</th>
-									<td colspan="3"><%=rs.getString("FILES")%></td>
+									<td colspan="3"><%=files%></td>
 								</tr>
 								<tr class="content">
-									<td colspan="4"><%=rs.getString("CONTENT")%></td>
+									<td colspan="4"><%=content%></td>
 								</tr>
 							</tbody>
 						</table>
@@ -267,8 +282,3 @@
     
     </html>
 
-<%
-    rs.close();
-    st.close();
-    con.close();
-%>
