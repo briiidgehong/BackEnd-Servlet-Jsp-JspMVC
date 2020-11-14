@@ -2,45 +2,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 
 
-<%
-    //CONTROLLER
-    int id = Integer.parseInt(request.getParameter("id"));
-    String url = "jdbc:oracle:thin:@localhost:1521/xe";
-    String sql = "SELECT * FROM NOTICE WHERE ID=?";
-
-    try {
-        Class.forName("oracle.jdbc.driver.OracleDriver");
-    } catch (ClassNotFoundException e) {
-        System.out.println("ODBC CLASS LOAD 실패");
-        e.printStackTrace();
-    }
-    Connection con = DriverManager.getConnection(url, "C##MANGOZZELLI", "0000");
-    PreparedStatement st = con.prepareStatement(sql);
-
-    // 위의 ? 와 연계
-    st.setInt(1, id);
-
-    ResultSet rs = st.executeQuery();
-
-    //resultSet이 가지고 있는 공간에 record 하나가 적재된다.
-    rs.next();
-
-
-    //MODEL VARIABLE
-    String title = rs.getString("TITLE");
-    String content = rs.getString("CONTENT");
-    Date regdate = rs.getDate("REGDATE");
-    String writer_id = rs.getString("WRITER_ID");
-    String hit = rs.getString("HIT");
-    String files = rs.getString("FILES");
-
-
-
-    rs.close();
-    st.close();
-    con.close();
-%>
-
+<!-- VIEW -->
 <!DOCTYPE html>
 <html>
 
@@ -190,24 +152,24 @@
 							<tbody>
 								<tr>
 									<th>제목</th>
-									<td class="text-align-left text-indent text-strong text-orange" colspan="3"><%=title%></td>
+									<td class="text-align-left text-indent text-strong text-orange" colspan="3"><%=request.getAttribute("title")%></td>
 								</tr>
 								<tr>
 									<th>작성일</th>
-									<td class="text-align-left text-indent" colspan="3"><%=regdate%></td>
+									<td class="text-align-left text-indent" colspan="3"><%=request.getAttribute("regdate")%></td>
 								</tr>
 								<tr>
-									<th><%=writer_id%></th>
+									<th><%=request.getAttribute("writer_id")%></th>
 									<td>newlec</td>
-									<th><%=hit%></th>
+									<th><%=request.getAttribute("hit")%></th>
 									<td>148</td>
 								</tr>
 								<tr>
 									<th>첨부파일</th>
-									<td colspan="3"><%=files%></td>
+									<td colspan="3"><%=request.getAttribute("files")%></td>
 								</tr>
 								<tr class="content">
-									<td colspan="4"><%=content%></td>
+									<td colspan="4"><%=request.getAttribute("content")%></td>
 								</tr>
 							</tbody>
 						</table>
