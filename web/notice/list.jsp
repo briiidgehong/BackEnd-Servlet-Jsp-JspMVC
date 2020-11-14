@@ -1,5 +1,23 @@
+<%@ page import="java.sql.Connection" %>
+<%@ page import="java.sql.DriverManager" %>
+<%@ page import="java.sql.Statement" %>
+<%@ page import="java.sql.ResultSet" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 
+<%
+	String url = "jdbc:oracle:thin:@localhost:1521/xe";
+	String sql = "SELECT * FROM NOTICE";
+
+	try {
+		Class.forName("oracle.jdbc.driver.OracleDriver");
+	} catch (ClassNotFoundException e) {
+		System.out.println("ODBC CLASS LOAD 실패");
+		e.printStackTrace();
+	}
+		Connection con = DriverManager.getConnection(url, "C##MANGOZZELLI", "0000");
+		Statement st = con.createStatement();
+		ResultSet rs = st.executeQuery(sql);
+%>
 <!DOCTYPE html>
 <html>
 
@@ -7,15 +25,15 @@
     <title>코딩 전문가를 만들기 위한 온라인 강의 시스템</title>
     <meta charset="UTF-8">
     <title>공지사항목록</title>
-    
+
     <link href="/css/customer/layout.css" type="text/css" rel="stylesheet" />
     <style>
-    
-        #visual .content-container{	
+
+        #visual .content-container{
             height:inherit;
-            display:flex; 
+            display:flex;
             align-items: center;
-            
+
             background: url("../../images/customer/visual.png") no-repeat center;
         }
     </style>
@@ -25,7 +43,7 @@
     <!-- header 부분 -->
 
     <header id="header">
-        
+
         <div class="content-container">
             <!-- ---------------------------<header>--------------------------------------- -->
 
@@ -84,12 +102,12 @@
             </section>
 
         </div>
-        
+
     </header>
 
 	<!-- --------------------------- <visual> --------------------------------------- -->
 	<!-- visual 부분 -->
-	
+
 	<div id="visual">
 		<div class="content-container"></div>
 	</div>
@@ -111,7 +129,7 @@
 						<li><a class=""  href="/customer/faq">자주하는 질문</a></li>
 						<li><a class="" href="/customer/question">수강문의</a></li>
 						<li><a class="" href="/customer/event">이벤트</a></li>
-						
+
 					</ul>
 				</nav>
 
@@ -121,10 +139,10 @@
 		<ul>
 			<li><a target="_blank" href="http://www.notepubs.com"><img src="/images/notepubs.png" alt="노트펍스" /></a></li>
 			<li><a target="_blank" href="http://www.namoolab.com"><img src="/images/namoolab.png" alt="나무랩연구소" /></a></li>
-						
+
 		</ul>
 	</nav>
-					
+
 			</aside>
 			<!-- --------------------------- main --------------------------------------- -->
 
@@ -132,7 +150,7 @@
 
 		<main class="main">
 			<h2 class="main title">공지사항</h2>
-			
+
 			<div class="breadcrumb">
 				<h3 class="hidden">경로</h3>
 				<ul>
@@ -141,7 +159,7 @@
 					<li>공지사항</li>
 				</ul>
 			</div>
-			
+
 			<div class="search-form margin-top first align-right">
 				<h3 class="hidden">공지사항 검색폼</h3>
 				<form class="table-form">
@@ -151,14 +169,14 @@
 						<select name="f">
 							<option  value="title">제목</option>
 							<option  value="writerId">작성자</option>
-						</select> 
+						</select>
 						<label class="hidden">검색어</label>
 						<input type="text" name="q" value=""/>
 						<input class="btn btn-search" type="submit" value="검색" />
 					</fieldset>
 				</form>
 			</div>
-			
+
 			<div class="notice margin-top">
 				<h3 class="hidden">공지사항 목록</h3>
 				<table class="table">
@@ -177,50 +195,50 @@
 					     10번 반복 for문 생성, 안에 출력되는 <tr> <td> 들은
 					     out.print("<tr> <td>") 이런식으로 Jasper 가 바꿔줄꺼다. -->
 
-					<%for(int i=0; i<10; i++){ %>
+					<% while (rs.next()){ %>
 					<tr>
-						<td><%out.print(i+1);%></td>
-						<td class="title indent text-align-left"><a href="detail.html">스프링 8강까지의 예제 코드</a></td>
-						<td>newlec</td>
+						<td><%=rs.getInt("ID")%>;%></td>
+						<td class="title indent text-align-left"><a href="detail.html"><%=rs.getString("TITLE")%></a></td>
+						<td><%=rs.getString("WRITER_ID")%></td>
 						<td>
-							2019-08-18		
+							<%=rs.getString("REGDATE")%>
 						</td>
-						<td>146</td>
+						<td><%=rs.getString("HIT")%></td>
 					</tr>
 					<%}%>
 
 					</tbody>
 				</table>
 			</div>
-			
+
 			<div class="indexer margin-top align-right">
 				<h3 class="hidden">현재 페이지</h3>
 				<div><span class="text-orange text-strong">1</span> / 1 pages</div>
 			</div>
 
-			<div class="margin-top align-center pager">	
-		
+			<div class="margin-top align-center pager">
+
 	<div>
-		
-		
+
+
 		<span class="btn btn-prev" onclick="alert('이전 페이지가 없습니다.');">이전</span>
-		
+
 	</div>
 	<ul class="-list- center">
 		<li><a class="-text- orange bold" href="?p=1&t=&q=" >1</a></li>
-				
+
 	</ul>
 	<div>
-		
-		
+
+
 			<span class="btn btn-next" onclick="alert('다음 페이지가 없습니다.');">다음</span>
-		
+
 	</div>
-	
+
 			</div>
 		</main>
-		
-			
+
+
 		</div>
 	</div>
 
@@ -231,7 +249,7 @@
         <footer id="footer">
             <div class="content-container">
                 <h2 id="footer-logo"><img src="/images/logo-footer.png" alt="회사정보"></h2>
-    
+
                 <div id="company-info">
                     <dl>
                         <dt>주소:</dt>
@@ -259,5 +277,11 @@
             </div>
         </footer>
     </body>
-    
+
     </html>
+
+<%
+	rs.close();
+	st.close();
+	con.close();
+%>
