@@ -1,7 +1,7 @@
 <%@ page import="mangozzelli.entity.Notice" %>
 <%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
-
+<%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html>
@@ -180,92 +180,94 @@
 					     10번 반복 for문 생성, 안에 출력되는 <tr> <td> 들은
 					     out.print("<tr> <td>") 이런식으로 Jasper 가 바꿔줄꺼다. -->
 
-					<%
+					<%--<%
 						List<Notice> list = (List<Notice>) request.getAttribute("list");
 						for(Notice n :list) {
 							//page, request, session, application 저장소 중 page 사용
 							pageContext.setAttribute("n",n);
-					%>
+					%> --%>
 
+					<c:forEach var="notice" items="${list}">
 					<tr>
-						<td>${n.id}</td>
-						<td class="title indent text-align-left"><a href="/notice/detail?id=${n.id}">${n.title}</a></td>
-						<td>${n.writer_id}</td>
-						<td>${n.regdate}</td>
-						<td>${n.hit}</td>
+						<td>${notice.id}</td>
+						<td class="title indent text-align-left"><a href="/notice/detail?id=${notice.id}">${notice.title}</a></td>
+						<td>${notice.writer_id}</td>
+						<td>${notice.regdate}</td>
+						<td>${notice.hit}</td>
 					</tr>
-					<%}%>
+						<%--<%}%>--%>
+                        </c:forEach>
 
-					</tbody>
-				</table>
-			</div>
-
-			<div class="indexer margin-top align-right">
-				<h3 class="hidden">현재 페이지</h3>
-				<div><span class="text-orange text-strong">1</span> / 1 pages</div>
-			</div>
-
-			<div class="margin-top align-center pager">
-
-	<div>
-
-
-		<span class="btn btn-prev" onclick="alert('이전 페이지가 없습니다.');">이전</span>
-
-	</div>
-	<ul class="-list- center">
-		<li><a class="-text- orange bold" href="?p=1&t=&q=" >1</a></li>
-
-	</ul>
-	<div>
-
-
-			<span class="btn btn-next" onclick="alert('다음 페이지가 없습니다.');">다음</span>
-
-	</div>
-
-			</div>
-		</main>
-
-
-		</div>
-	</div>
-
-    <!-- ------------------- <footer> --------------------------------------- -->
-
-
-
-        <footer id="footer">
-            <div class="content-container">
-                <h2 id="footer-logo"><img src="/images/logo-footer.png" alt="회사정보"></h2>
-
-                <div id="company-info">
-                    <dl>
-                        <dt>주소:</dt>
-                        <dd>서울특별시 </dd>
-                        <dt>관리자메일:</dt>
-                        <dd>admin@newlecture.com</dd>
-                    </dl>
-                    <dl>
-                        <dt>사업자 등록번호:</dt>
-                        <dd>111-11-11111</dd>
-                        <dt>통신 판매업:</dt>
-                        <dd>신고제 1111 호</dd>
-                    </dl>
-                    <dl>
-                        <dt>상호:</dt>
-                        <dd>뉴렉처</dd>
-                        <dt>대표:</dt>
-                        <dd>홍길동</dd>
-                        <dt>전화번호:</dt>
-                        <dd>111-1111-1111</dd>
-                    </dl>
-                    <div id="copyright" class="margin-top">Copyright ⓒ newlecture.com 2012-2014 All Right Reserved.
-                        Contact admin@newlecture.com for more information</div>
+                        </tbody>
+                    </table>
                 </div>
-            </div>
-        </footer>
-    </body>
 
-    </html>
+                <div class="indexer margin-top align-right">
+                    <h3 class="hidden">현재 페이지</h3>
+                    <div><span class="text-orange text-strong">1</span> / 1 pages</div>
+                </div>
+
+                <div class="margin-top align-center pager">
+
+        <div>
+
+
+            <span class="btn btn-prev" onclick="alert('이전 페이지가 없습니다.');">이전</span>
+
+        </div>
+        <ul class="-list- center">
+            <li><a class="-text- orange bold" href="?p=1&t=&q=" >1</a></li>
+
+        </ul>
+        <div>
+
+
+                <span class="btn btn-next" onclick="alert('다음 페이지가 없습니다.');">다음</span>
+
+        </div>
+
+                </div>
+            </main>
+
+
+            </div>
+        </div>
+
+        <!-- ------------------- <footer> --------------------------------------- -->
+
+
+
+            <footer id="footer">
+                <div class="content-container">
+                    <h2 id="footer-logo"><img src="/images/logo-footer.png" alt="회사정보"></h2>
+
+                    <div id="company-info">
+                        <dl>
+                            <dt>주소:</dt>
+                            <dd>서울특별시 </dd>
+                            <dt>관리자메일:</dt>
+                            <dd>admin@newlecture.com</dd>
+                        </dl>
+                        <dl>
+                            <dt>사업자 등록번호:</dt>
+                            <dd>111-11-11111</dd>
+                            <dt>통신 판매업:</dt>
+                            <dd>신고제 1111 호</dd>
+                        </dl>
+                        <dl>
+                            <dt>상호:</dt>
+                            <dd>뉴렉처</dd>
+                            <dt>대표:</dt>
+                            <dd>홍길동</dd>
+                            <dt>전화번호:</dt>
+                            <dd>111-1111-1111</dd>
+                        </dl>
+                        <div id="copyright" class="margin-top">Copyright ⓒ newlecture.com 2012-2014 All Right Reserved.
+                            Contact admin@newlecture.com for more information</div>
+                    </div>
+                </div>
+            </footer>
+        </body>
+
+        </html>
 
