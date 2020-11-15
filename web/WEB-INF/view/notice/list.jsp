@@ -211,13 +211,19 @@
 
         <div>
 
+			<c:set var="page" value="${(param.p == null)?1:param.p}"/>
+			<c:set var="startNum" value="${page-(page-1)%5}" />
+			<c:set var="lastNum" value="23" />
 
-            <span class="btn btn-prev" onclick="alert('이전 페이지가 없습니다.');">이전</span>
-
+			<c:if test="${startNum-5>0}">
+            	<a class="btn btn-prev" href="?p=${startNum-5}&t=&q=">이전</a>
+			</c:if>
+			<c:if test="${startNum-5<=0}">
+            	<span class="btn btn-prev" onclick="alert('이전 페이지가 없습니다.');">이전</span>
+			</c:if>
         </div>
 
-		<c:set var="page" value="${(param.p == null)?1:param.p}"/>
-		<c:set var="startNum" value="${page-(page-1)%5}" />
+
 
         <ul class="-list- center">
 			<c:forEach var="index" begin="0" end="4">
@@ -225,10 +231,12 @@
 			</c:forEach>
         </ul>
         <div>
-
-
-                <span class="btn btn-next" onclick="alert('다음 페이지가 없습니다.');">다음</span>
-
+				<c:if test="${startNum+5<lastNum}">
+                	<a class="btn btn-next" href="?p=${startNum+5}&t=&q=">다음</a>
+				</c:if>
+				<c:if test="${startNum+5>=lastNum}">
+					<span class="btn btn-next" onclick="alert('다음 페이지가 없습니다.');">다음</span>
+				</c:if>
         </div>
 
                 </div>
