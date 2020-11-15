@@ -187,9 +187,9 @@
 							pageContext.setAttribute("n",n);
 					%> --%>
 
-					<c:forEach var="notice" items="${list}">
+					<c:forEach var="notice" items="${list}" begin="1" end="3" varStatus="st">
 					<tr>
-						<td>${notice.id}</td>
+						<td>${st.index+1} / ${notice.id}</td>
 						<td class="title indent text-align-left"><a href="/notice/detail?id=${notice.id}">${notice.title}</a></td>
 						<td>${notice.writer_id}</td>
 						<td>${notice.regdate}</td>
