@@ -39,5 +39,5 @@ Servlet 편의 개발환경은 다음과 같습니다.
 [noticeListController 에서 getNoticeList()을 service로 분리](https://github.com/mangozzelli/BackEnd-Servlet-Jsp-JspMVC/commit/75786760510d1fc809e08969f50ad178efa6b4e5)  
 [noticeDetailController 에서 getNotice(id)를 service로 분리](https://github.com/mangozzelli/BackEnd-Servlet-Jsp-JspMVC/commit/df5ec2fb4a64e85c9a7250c3f303ef24315f32d8)  
   
-##다음 시리즈 예고🌱
+## 다음 시리즈 예고 - SPRING으로의 발전 (DAO의 분리와 FRONT CONTROLLER)
 ### BackEnd 개발정리 편 - SPRING-SPRING BOOT 🌱
