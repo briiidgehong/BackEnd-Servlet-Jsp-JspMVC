@@ -2,6 +2,8 @@
 <%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn"  uri="http://java.sun.com/jsp/jstl/functions" %>
+
 
 <!DOCTYPE html>
 <html>
@@ -202,20 +204,24 @@
                     </table>
                 </div>
 
-                <div class="indexer margin-top align-right">
+            <c:set var="page" value="${(param.p == null)?1:param.p}"/>
+            <c:set var="startNum" value="${page-(page-1)%5}" />
+            <c:set var="lastNum" value="${fn:substringBefore(Math.ceil(count/10),'.')}" />
+
+            <div class="indexer margin-top align-right">
                     <h3 class="hidden">현재 페이지</h3>
-                    <div><span class="text-orange text-strong">1</span> / 1 pages</div>
+                    <div><span class="text-orange text-strong">${(param.p != null && !param.p.equals(""))?param.p:1}</span> / ${lastNum} pages</div>
                 </div>
 
                 <div class="margin-top align-center pager">
 
         <div>
 
-			<c:set var="page" value="${(param.p == null)?1:param.p}"/>
-			<c:set var="startNum" value="${page-(page-1)%5}" />
-			<c:set var="lastNum" value="23" />
+            <%--test code
+            <div>${lastNum}</div>
+            --%>
 
-			<c:if test="${startNum-5>0}">
+            <c:if test="${startNum-5>0}">
             	<a class="btn btn-prev" href="?p=${startNum-5}&f=${param.f}&q=${param.q}">이전</a>
 			</c:if>
 			<c:if test="${startNum-5<=0}">
@@ -227,14 +233,16 @@
 
         <ul class="-list- center">
 			<c:forEach var="index" begin="0" end="4">
-            <li><a class="-text- orange bold" href="?p=${startNum+index}&f=${param.f}&q=${param.q}" >${startNum+index}</a></li>
-			</c:forEach>
+                <c:if test="${(startNum+index) <= lastNum}">
+                    <li><a class="-text- ${(page == startNum+index)?'orange':''} bold" href="?p=${startNum+index}&f=${param.f}&q=${param.q}" >${startNum+index}</a></li>
+                </c:if>
+            </c:forEach>
         </ul>
         <div>
-				<c:if test="${startNum+5<lastNum}">
+				<c:if test="${startNum+5<=lastNum}">
                 	<a class="btn btn-next" href="?p=${startNum+5}&f=${param.f}&q=${param.q}">다음</a>
 				</c:if>
-				<c:if test="${startNum+5>=lastNum}">
+				<c:if test="${startNum+5>lastNum}">
 					<span class="btn btn-next" onclick="alert('다음 페이지가 없습니다.');">다음</span>
 				</c:if>
         </div>

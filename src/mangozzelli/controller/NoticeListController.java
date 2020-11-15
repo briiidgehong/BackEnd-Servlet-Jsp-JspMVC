@@ -21,7 +21,6 @@ public class NoticeListController extends HttpServlet {
 
         //검색 요청 받기
         // jsp page -> /notice/list?f=title?q=blablabla
-
         String field = "title";
         String query = "";
         int page = 1;
@@ -42,7 +41,12 @@ public class NoticeListController extends HttpServlet {
 
 
 
+        // paging lastNum 구하기 위해 데이터의 count 가져오기
+        int count = service.getNoticeCount(field, query);
+
         request.setAttribute("list",list);
+        request.setAttribute("count",count);
+
 
         request.getRequestDispatcher("/WEB-INF/view/notice/list.jsp")
                 .forward(request,response);
