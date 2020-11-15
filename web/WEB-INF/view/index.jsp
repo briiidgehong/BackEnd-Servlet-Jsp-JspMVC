@@ -1,3 +1,5 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
+
 <!DOCTYPE html>
 <html>
 
@@ -19,7 +21,7 @@
             <!-- ---------------------------<header>--------------------------------------- -->
 
             <h1 id="logo">
-                <a href="/index.html">
+                <a href="/WEB-INF/view/index.html">
                     <img src="/images/logo.png" alt="뉴렉처 온라인" />
 
                 </a>
@@ -55,7 +57,7 @@
                     <nav id="acount-menu">
                         <h1 class="hidden">회원메뉴</h1>
                         <ul>
-                            <li><a href="/index.html">HOME</a></li>
+                            <li><a href="/WEB-INF/view/index.html">HOME</a></li>
                             <li><a href="/member/login.html">로그인</a></li>
                             <li><a href="/member/agree.html">회원가입</a></li>
                         </ul>
@@ -123,7 +125,7 @@
             <section class="guide">
                 <h1 class="title">강의 플레이어 사용방법 안내</h1>
                 <div class="margin-top">
-                    <a href="customer/faq/1"><img src="images/customer/installInfo.png" /></a>
+                    <a href="customer/faq/1"><img src="../../images/customer/installInfo.png" /></a>
                 </div>
                 <!-- <div>
             2
@@ -317,7 +319,7 @@
                 </li> -->
                 <li class="item-course normal event">
                     <div>
-                        <a href="course/2"><img src="images/course/java.png" /></a>                        
+                        <a href="course/2"><img src="../../images/course/java.png" /></a>
                     </div>
                     <div>
                         <div>
@@ -359,8 +361,8 @@
         <div class="content-container">
             <h3 class="-text- center green bold -margin- top">협력업체</h3>
             <ul class="-list- horizontal center -margin- bottom top b20">
-                <li><a target="_blank" href="http://www.notepubs.com"><img src="images/notepubs.png" alt="노트펍스" /></a></li>
-                <li><a target="_blank" href="http://www.namoolab.com"><img src="images/namoolab.png" alt="나무랩연구소" /></a></li>                
+                <li><a target="_blank" href="http://www.notepubs.com"><img src="../../images/notepubs.png" alt="노트펍스" /></a></li>
+                <li><a target="_blank" href="http://www.namoolab.com"><img src="../../images/namoolab.png" alt="나무랩연구소" /></a></li>
                
             </ul>
         </div>
@@ -378,7 +380,7 @@
 
     <footer id="footer">
         <div class="content-container">
-            <h2 id="footer-logo"><img src="images/logo-footer.png" alt="회사정보"></h2>
+            <h2 id="footer-logo"><img src="../../images/logo-footer.png" alt="회사정보"></h2>
 
             <div id="company-info">
                 <dl>
