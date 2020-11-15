@@ -19,8 +19,22 @@ public class NoticeListController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        //검색 요청 받기
+        // jsp page -> /notice/list?f=title?q=blablabla
+
+        String field = "title";
+        String query = "";
+
+        String field_ = request.getParameter("f");
+        String query_ = request.getParameter("q");
+
+        if(field_ != null)
+            field = field_;
+        if(query_ != null)
+            query = query_;
+
         NoticeService service = new NoticeService();
-        List<Notice> list = service.getNoticeList();
+        List<Notice> list = service.getNoticeList(field, query,1);
 
 
 
