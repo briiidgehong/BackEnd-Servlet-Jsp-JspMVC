@@ -14,7 +14,7 @@ Servlet 편의 개발환경은 다음과 같습니다.
 * Java 11 JDK
 * Tomcat 9
 
-※ 출처: 이 정리는 youtube nweLecture 님의 강좌를 기반으로 작성되었습니다.
+※ 출처: 이 정리는 youtube newLecture 님의 강좌를 기반으로 작성되었습니다.
 
 ## 주요 commmit 내역☑️
 ### 1. jsp with jasper 의 등장배경:   
