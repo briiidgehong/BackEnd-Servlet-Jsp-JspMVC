@@ -16,7 +16,7 @@ Servlet 편의 개발환경은 다음과 같습니다.
 
 ※ 출처: 이 정리는 youtube newLecture 님의 강좌를 기반으로 작성되었습니다.
 
-## 주요 commmit 내역☑️
+## 주요 commit 내역☑️
 ### 1. jsp with jasper 의 등장배경:   
 [calcExample : CalcSevletPage(servlet include html code) + CalcServlet](https://github.com/mangozzelli/BackEnd-Servlet-Jsp-JspMVC/commit/fbdd2370ebd2588b3611ed44d82ae37d63b15004)  
 [jasper automatly convert jsp to servlet](https://github.com/mangozzelli/BackEnd-Servlet-Jsp-JspMVC/commit/50a283c3c70f8c5c41078c144cf090a9920eebfd)  
