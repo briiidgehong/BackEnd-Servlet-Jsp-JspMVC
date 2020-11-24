@@ -1,4 +1,4 @@
-# BackEnd 개발정리 편 - Servlet -> JSP -> JSP MVC -> 완료
+# BackEnd 개발정리 - Servlet -> JSP -> JSP MVC -> 완료
 
 BackEnd 개발의 큰 흐름 : Servlet -> JSP -> JSP MVC -> SPRING -> SPRING BOOT
 
@@ -6,7 +6,7 @@ BackEnd 개발의 큰 흐름 : Servlet -> JSP -> JSP MVC -> SPRING -> SPRING BOO
 
 각각의 구현과 함께 바뀌어가는 과정을 한 cycle 정리할 예정
 
-Servlet 편의 개발환경은 다음과 같습니다. 
+Servlet-Jsp-JspMVC 의 개발환경은 다음과 같습니다. 
 * IDE : IntelliJ IDEA
 * Git Tools : GitHub Desktop
 * OS : Window 10
@@ -39,4 +39,4 @@ Servlet 편의 개발환경은 다음과 같습니다.
 [noticeListController 에서 getNoticeList()을 service로 분리](https://github.com/mangozzelli/BackEnd-Servlet-Jsp-JspMVC/commit/75786760510d1fc809e08969f50ad178efa6b4e5)  
 [noticeDetailController 에서 getNotice(id)를 service로 분리](https://github.com/mangozzelli/BackEnd-Servlet-Jsp-JspMVC/commit/df5ec2fb4a64e85c9a7250c3f303ef24315f32d8)  
   
-## 다음 시리즈 - SPRING으로의 발전 🌱
+##### NEXT - SPRING1-DI-AOP 🌱
