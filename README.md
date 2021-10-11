@@ -1,6 +1,6 @@
-# BackEnd 개발정리 - Servlet -> JSP -> JSP MVC -> 완료
+# Java 개발정리 - Servlet -> JSP -> JSP MVC -> 완료
 
-BackEnd 개발의 흐름 : Servlet -> JSP -> JSP MVC -> SPRING 
+Java 개발의 흐름 : Servlet -> JSP -> JSP MVC -> SPRING 
 
 각각의 구현과 함께 바뀌어가는 과정을 한 cycle 정리할 예정
 
@@ -12,7 +12,7 @@ Servlet-Jsp-JspMVC 의 개발환경은 다음과 같습니다.
 * Java 11 JDK
 * Tomcat 9
 
-※ 이 정리는 newLecture 강좌를 기반으로 작성되었습니다.
+※ 이 정리는 newLecture 유튜브 채널 강좌를 참조해 작성되었습니다.
 
 ## 주요 commit 내역☑️
 ### 1. jsp with jasper 의 등장배경:   
