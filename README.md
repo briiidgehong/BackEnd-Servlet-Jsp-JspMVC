@@ -12,7 +12,7 @@ Servlet-Jsp-JspMVC 의 개발환경은 다음과 같습니다.
 * Java 11 JDK
 * Tomcat 9
 
-## 주요 commit 내역☑️
+## 주요 commit 내역☑️ (아래 링크를 클릭하면 해당 commit으로 이동합니다.)
 ### 1. jsp with jasper 의 등장배경:   
 [calcExample : CalcSevletPage(servlet include html code) + CalcServlet](https://github.com/mangozzelli/BackEnd-Servlet-Jsp-JspMVC/commit/fbdd2370ebd2588b3611ed44d82ae37d63b15004)  
 [jasper automatly convert jsp to servlet](https://github.com/mangozzelli/BackEnd-Servlet-Jsp-JspMVC/commit/50a283c3c70f8c5c41078c144cf090a9920eebfd)  
